@@ -1,13 +1,14 @@
+import Container from "@/components/container";
+import { urlForImage } from "@/lib/sanity/image";
+import { PortableText } from "@/lib/sanity/plugins/portabletext";
+import { format, parseISO } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import Container from "@/components/container";
 import { notFound } from "next/navigation";
-import { PortableText } from "@/lib/sanity/plugins/portabletext";
-import { urlForImage } from "@/lib/sanity/image";
-import { parseISO, format } from "date-fns";
 
-import CategoryLabel from "@/components/blog/category";
 import AuthorCard from "@/components/blog/authorCard";
+import CategoryLabel from "@/components/blog/category";
+import ShareArticleButton from "@/components/ui/ShareButton";
 
 export default function Post(props) {
   const { loading, post } = props;
@@ -42,7 +43,8 @@ export default function Post(props) {
             <div className="flex items-center gap-3">
               <div className="relative h-10 w-10 flex-shrink-0">
                 {AuthorimageProps && (
-                  <Link href={`/author/${post.author.slug.current}`}>
+                  <Link
+                    href={`/author/${post?.author?.slug?.current}`}>
                     <Image
                       src={AuthorimageProps.src}
                       alt={post?.author?.name}
@@ -55,16 +57,17 @@ export default function Post(props) {
               </div>
               <div>
                 <p className="text-gray-800 dark:text-gray-400">
-                  <Link href={`/author/${post.author.slug.current}`}>
-                    {post.author.name}
+                  <Link
+                    href={`/author/${post?.author?.slug?.current}`}>
+                    {post?.author?.name}
                   </Link>
                 </p>
                 <div className="flex items-center space-x-2 text-sm">
                   <time
                     className="text-gray-500 dark:text-gray-400"
-                    dateTime={post?.publishedAt || post._createdAt}>
+                    dateTime={post?.publishedAt || post?._createdAt}>
                     {format(
-                      parseISO(post?.publishedAt || post._createdAt),
+                      parseISO(post?.publishedAt || post?._createdAt),
                       "MMMM dd, yyyy"
                     )}
                   </time>
@@ -94,14 +97,15 @@ export default function Post(props) {
           <div className="prose mx-auto my-3 dark:prose-invert prose-a:text-blue-600">
             {post.body && <PortableText value={post.body} />}
           </div>
-          <div className="mb-7 mt-7 flex justify-center">
+          <div className="mb-7 mt-16 flex flex-col items-center justify-center space-y-3">
+            <ShareArticleButton post={post} />
             <Link
               href="/"
               className="bg-brand-secondary/20 rounded-full px-5 py-2 text-sm text-blue-600 dark:text-blue-500 ">
               ← View all posts
             </Link>
           </div>
-          {post.author && <AuthorCard author={post.author} />}
+          {post?.author && <AuthorCard author={post?.author} />}
         </article>
       </Container>
     </>
