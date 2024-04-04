@@ -20,17 +20,17 @@ export default function About({ authors, settings }) {
             <div
               key={author._id}
               className="relative aspect-square overflow-hidden rounded-md bg-slate-50 odd:translate-y-10 odd:md:translate-y-16">
-              <Link href={`/author/${author?.slug}`}>
-                {imageProps && (
-                  <Image
-                    src={imageProps?.src}
-                    alt={author?.name || " "}
-                    fill
-                    sizes="(max-width: 320px) 100vw, 320px"
-                    className="object-cover"
-                  />
-                )}
-              </Link>
+              {/* <Link href={`/author/${author?.slug}`}> */}
+              {imageProps && (
+                <Image
+                  src={imageProps?.src}
+                  alt={author?.name || " "}
+                  fill
+                  sizes="(max-width: 320px) 100vw, 320px"
+                  className="object-cover"
+                />
+              )}
+              {/* </Link> */}
             </div>
           );
         })}
