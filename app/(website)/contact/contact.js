@@ -29,7 +29,7 @@ export default function Contact({ settings }) {
   // const { submit: onSubmit } = useWeb3Forms({
   //   access_key: apiKey,
   //   settings: {
-  //     from_name: "Tech Circa Template",
+  //     from_name: "Tech Circa",
   //     subject: "New Contact Message from Tech Circa Website"
   //   },
   //   onSuccess: (msg, data) => {

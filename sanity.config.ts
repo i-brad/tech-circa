@@ -21,7 +21,7 @@ console.log(projectId);
 
 export default defineConfig({
   name: "default",
-  title: "Tech Circa Template",
+  title: "Tech Circa",
   basePath: "/studio",
   projectId: projectId,
   dataset: dataset,
